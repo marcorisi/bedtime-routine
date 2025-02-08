@@ -1,8 +1,8 @@
 import { Text, View } from "react-native";
-import { getTurn } from "./src/turnService";
+import { getTurnMessage } from "./src/turnService";
 
 export default function Index() {
-  const message = getTurn(new Date());
+  const message = getTurnMessage(new Date());
 
   return (
     <View

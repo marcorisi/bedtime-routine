@@ -1,5 +1,5 @@
-export function getTurn(date: Date): string {
+export function getTurnMessage(date: Date): string {
   const day = date.getDate();
-  console.log(day)
-  return day % 2 === 0 ? "Today it's mommy turn" : "Today it's daddy turn";
+  const who = day % 2 === 0 ? "mamma" : "papà";
+  return `Oggi tocca a... ${who}!`;
 }
