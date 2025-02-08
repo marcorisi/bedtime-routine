@@ -1,8 +1,11 @@
 import { Text, View } from "react-native";
-import { getTurnMessage } from "./src/turnService";
+import { getTurnMessage, getWho } from "./src/turnService";
+import { Who } from "./src/domain";
+import { Avatar } from "./components/avatar";
 
 export default function Index() {
-  const message = getTurnMessage(new Date());
+  const who: Who = getWho(new Date());
+  const message = getTurnMessage(who);
 
   return (
     <View
@@ -13,6 +16,7 @@ export default function Index() {
       }}
     >
       <Text>{message}</Text>
+      <Avatar />
     </View>
   );
 }
