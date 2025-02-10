@@ -5,8 +5,8 @@ import React from 'react';
 export function MyAvatar({ who }: { who: Who }) {
 
     const getAvatarConfig = (who: Who): AvatarConfig => {
-        if (who === Who.MOM) {
-            return {
+        return (who === Who.MOM ?
+            {
                 "sex": "woman",
                 "faceColor": "#F9C9B6",
                 "earSize": "small",
@@ -22,9 +22,7 @@ export function MyAvatar({ who }: { who: Who }) {
                 "eyeBrowStyle": "up",
                 "shirtColor": "#F4D150",
                 "bgColor": "linear-gradient(45deg, #3e1ccd 0%, #ff6871 100%)"
-            }
-        } else {
-            return {
+            } : {
                 "sex": "man",
                 "faceColor": "#F9C9B6",
                 "earSize": "big",
@@ -41,7 +39,7 @@ export function MyAvatar({ who }: { who: Who }) {
                 "shirtColor": "#6BD9E9",
                 "bgColor": "linear-gradient(45deg, #1729ff 0%, #ff56f7 100%)"
             }
-        }
+        );
     }
 
     const config = genConfig(getAvatarConfig(who));
