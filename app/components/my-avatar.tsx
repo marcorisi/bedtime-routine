@@ -1,4 +1,3 @@
-import { Text } from "react-native"
 import Avatar, { genConfig, SexType } from '@zamplyy/react-native-nice-avatar';
 import { Who } from "../src/domain";
 import React from 'react';
