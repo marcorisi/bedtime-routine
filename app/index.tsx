@@ -1,7 +1,7 @@
 import { Text, View } from "react-native";
 import { getTurnMessage, getWho } from "./src/turnService";
 import { Who } from "./src/domain";
-import { Avatar } from "./components/avatar";
+import { MyAvatar } from "./components/my-avatar";
 
 export default function Index() {
   const who: Who = getWho(new Date());
@@ -16,7 +16,7 @@ export default function Index() {
       }}
     >
       <Text>{message}</Text>
-      <Avatar />
+      <MyAvatar who={who}/>
     </View>
   );
 }
