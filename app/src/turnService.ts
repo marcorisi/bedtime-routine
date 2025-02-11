@@ -5,7 +5,3 @@ export function getWho(date: Date): Who {
   const who = day % 2 === 0 ? Who.MOM : Who.DAD;
   return who;
 }
-
-export function getTurnMessage(who: Who): string {
-  return `Oggi tocca a... ${who}!`;
-}
