@@ -1,4 +1,4 @@
-import Avatar, { genConfig, SexType } from '@zamplyy/react-native-nice-avatar';
+import Avatar, { genConfig, AvatarConfig } from '@zamplyy/react-native-nice-avatar';
 import { Who } from "../src/domain";
 import React from 'react';
 
@@ -19,7 +19,6 @@ export function MyAvatar({ who }: { who: Who }) {
                 "hairStyle": "womanLong",
                 "hatStyle": "none",
                 "hatColor": "#000",
-                "eyeBrowStyle": "up",
                 "shirtColor": "#F4D150",
                 "bgColor": "linear-gradient(45deg, #3e1ccd 0%, #ff6871 100%)"
             } : {
@@ -35,7 +34,6 @@ export function MyAvatar({ who }: { who: Who }) {
                 "hairStyle": "thick",
                 "hatStyle": "none",
                 "hatColor": "#000",
-                "eyeBrowStyle": "up",
                 "shirtColor": "#6BD9E9",
                 "bgColor": "linear-gradient(45deg, #1729ff 0%, #ff56f7 100%)"
             }
