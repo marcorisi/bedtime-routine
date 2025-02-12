@@ -1,10 +1,10 @@
-import Avatar, { genConfig, AvatarConfig } from '@zamplyy/react-native-nice-avatar';
+import Avatar, { genConfig, AvatarFullConfig } from '@zamplyy/react-native-nice-avatar';
 import { Who } from "../src/domain";
 import React from 'react';
 
 export function MyAvatar({ who }: { who: Who }) {
 
-    const getAvatarConfig = (who: Who): AvatarConfig => {
+    const getAvatarConfig = (who: Who): AvatarFullConfig => {
         return (who === Who.MOM ?
             {
                 "sex": "woman",
@@ -20,7 +20,8 @@ export function MyAvatar({ who }: { who: Who }) {
                 "hatStyle": "none",
                 "hatColor": "#000",
                 "shirtColor": "#F4D150",
-                "bgColor": "linear-gradient(45deg, #3e1ccd 0%, #ff6871 100%)"
+                "bgColor": "#9286FE",
+                "eyeBrowStyle": "upWoman"
             } : {
                 "sex": "man",
                 "faceColor": "#F9C9B6",
@@ -35,7 +36,8 @@ export function MyAvatar({ who }: { who: Who }) {
                 "hatStyle": "none",
                 "hatColor": "#000",
                 "shirtColor": "#6BD9E9",
-                "bgColor": "linear-gradient(45deg, #1729ff 0%, #ff56f7 100%)"
+                "bgColor": "#FB8F9E",
+                "eyeBrowStyle": "up"
             }
         );
     }
