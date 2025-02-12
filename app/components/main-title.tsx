@@ -6,7 +6,7 @@ export function MainTitle({ who }: { who: Who }) {
     return (
         <>
             <Text style={styles.customFont}>Oggi tocca a...</Text>
-            <Text style={[styles.title, styles.customFont]}>
+            <Text style={[styles.customFont, styles.title]}>
                 {who}!
             </Text>
         </>
@@ -20,5 +20,6 @@ const styles = StyleSheet.create({
     },
     title: {
         fontSize: 48,
+        letterSpacing: 4,
     },
 });
