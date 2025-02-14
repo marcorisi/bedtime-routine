@@ -31,6 +31,7 @@ const styles = StyleSheet.create({
     title: {
         fontSize: 48,
         letterSpacing: 4,
+        marginTop: 12,
         marginBottom: 24,
     },
     mommyStyle: {
