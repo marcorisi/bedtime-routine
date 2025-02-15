@@ -3,5 +3,7 @@ export const Colors = {
     lightBlue: '#BEDBFE',
 
     pink: '#DA2877',
-    lightPink: '#FBCFE8'
+    lightPink: '#FBCFE8',
+
+    primaryTextColor: '#3C3C3C',
 };
