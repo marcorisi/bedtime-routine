@@ -1,6 +1,7 @@
 import FontAwesome from '@expo/vector-icons/FontAwesome';
 import { Tabs } from 'expo-router';
 import { Colors } from '../src/colors';
+import featureFlags from '../src/config';
 
 export default function TabLayout() {
   return (
@@ -17,6 +18,7 @@ export default function TabLayout() {
         name="calendar"
         options={{
           title: 'Calendar',
+          href: featureFlags.tabCalendar ? '/settings' : null,
           tabBarActiveTintColor: Colors.primaryTextColor,
           tabBarIcon: ({ color }) => <FontAwesome size={28} name="calendar" color={Colors.primaryTextColor} />,
         }}
@@ -25,6 +27,7 @@ export default function TabLayout() {
         name="settings"
         options={{
           title: 'Settings',
+          href: featureFlags.tabSettings ? '/settings' : null,
           tabBarActiveTintColor: Colors.primaryTextColor,
           tabBarIcon: ({ color }) => <FontAwesome size={28} name="cog" color={Colors.primaryTextColor} />,
         }}
