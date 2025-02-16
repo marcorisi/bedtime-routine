@@ -1,7 +1,7 @@
 import { Colors } from "./colors";
 import { Who } from "./domain";
 
-interface CustomStyle {
+export interface CustomStyle {
     container: {
         backgroundColor: string;
     };
@@ -9,6 +9,12 @@ interface CustomStyle {
         color: string;
         fontWeight: string;
     };
+}
+
+export interface MarkedDates {
+    [key: string]: {
+      customStyles: CustomStyle
+    }
 }
 
 export function getDaysInMonth(month: number, year: number): Date[] {
