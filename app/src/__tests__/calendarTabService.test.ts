@@ -1,4 +1,4 @@
-import { getDaysInMonth } from './calendarTabService';
+import { getDaysInMonth } from '../calendarTabService';
 
 describe('getDaysInMonth', () => {
 
