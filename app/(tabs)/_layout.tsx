@@ -18,7 +18,7 @@ export default function TabLayout() {
         name="calendar"
         options={{
           title: 'Calendar',
-          href: featureFlags.tabCalendar ? '/settings' : null,
+          href: featureFlags.tabCalendar ? '/calendar' : null,
           tabBarActiveTintColor: Colors.primaryTextColor,
           tabBarIcon: ({ color }) => <FontAwesome size={28} name="calendar" color={Colors.primaryTextColor} />,
         }}
