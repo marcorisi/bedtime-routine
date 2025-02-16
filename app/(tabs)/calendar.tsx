@@ -1,6 +1,7 @@
 import { View, StyleSheet } from "react-native";
-
 import { Calendar, LocaleConfig } from "react-native-calendars";
+import { getCustomStyle, getDaysInMonth } from "../src/calendarTabService";
+import { getWho } from "../src/turnService";
 
 export default function CalendarTab() {
 
@@ -26,9 +27,22 @@ export default function CalendarTab() {
   };
   LocaleConfig.defaultLocale = 'it';
 
+  const days = getDaysInMonth(1, 2025);
+  const markedDates = {};
+  
+  days.forEach(day => {
+    const who = getWho(day);
+    markedDates[day.toISOString().slice(0, 10)] = {
+      customStyles: getCustomStyle(who)
+    }
+  });
+
   return (
     <View style={styles.container}>
-      <Calendar />
+      <Calendar 
+        markingType={'custom'} 
+        markedDates={markedDates} 
+    />
     </View>
   );
 }

@@ -1,3 +1,15 @@
+import { Colors } from "./colors";
+import { Who } from "./domain";
+
+interface CustomStyle {
+    container: {
+        backgroundColor: string;
+    };
+    text: {
+        color: string;
+        fontWeight: string;
+    };
+}
 
 export function getDaysInMonth(month: number, year: number): Date[] {
     const firstDayOfTheNextMonth = new Date(year, month + 1, 0).getDate();
@@ -8,5 +20,25 @@ export function getDaysInMonth(month: number, year: number): Date[] {
     }
 
     return dates;
+}
+
+export function getCustomStyle(who: Who): CustomStyle {
+    const color: string = who === Who.DAD 
+        ? Colors.blue
+        : Colors.pink;
+    
+    const backgroundColor: string = who === Who.DAD
+        ? Colors.lightBlue
+        : Colors.lightPink;
+
+    return {
+        container: {
+            backgroundColor: backgroundColor
+        },
+        text: {
+            color: color,
+            fontWeight: 'bold'
+        }
+    };
 }
 
