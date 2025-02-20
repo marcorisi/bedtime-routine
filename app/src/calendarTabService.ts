@@ -24,7 +24,7 @@ export function getDaysInMonth(month: number, year: number): Date[] {
     const dates: Date[] = [];
 
     for (let day = 1; day <= firstDayOfTheNextMonth; day++) {
-        dates.push(new Date(year, month, day));
+        dates.push(new Date(Date.UTC(year, month, day)));
     }
 
     return dates;
