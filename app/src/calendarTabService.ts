@@ -4,6 +4,8 @@ import { Who } from "./domain";
 export interface CustomStyle {
     container: {
         backgroundColor: string;
+        borderColor?: string;
+        borderWidth?: number;
     };
     text: {
         color: string;
@@ -28,7 +30,7 @@ export function getDaysInMonth(month: number, year: number): Date[] {
     return dates;
 }
 
-export function getCustomStyle(who: Who): CustomStyle {
+export function getCustomStyle(who: Who, isToday: boolean): CustomStyle {
     const color: string = who === Who.DAD 
         ? Colors.blue
         : Colors.pink;
@@ -37,7 +39,7 @@ export function getCustomStyle(who: Who): CustomStyle {
         ? Colors.lightBlue
         : Colors.lightPink;
 
-    return {
+    let customStyle: CustomStyle = {
         container: {
             backgroundColor: backgroundColor
         },
@@ -46,5 +48,12 @@ export function getCustomStyle(who: Who): CustomStyle {
             fontWeight: 'bold'
         }
     };
+
+    if (isToday) {
+        customStyle.container.borderColor = color;
+        customStyle.container.borderWidth = 2;
+    }
+
+    return customStyle;
 }
 

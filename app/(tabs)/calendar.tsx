@@ -29,11 +29,13 @@ export default function CalendarTab() {
 
   const days: Date[] = getDaysInMonth(1, 2025);
   const markedDates: MarkedDates = {};
+  const today = new Date();
   
   days.forEach(day => {
     const who = getWho(day);
+    const isToday = day.toDateString() === today.toDateString();
     markedDates[day.toISOString().slice(0, 10)] = {
-      customStyles: getCustomStyle(who)
+      customStyles: getCustomStyle(who, isToday)
     }
   });
 
