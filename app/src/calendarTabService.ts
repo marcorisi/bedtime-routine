@@ -30,6 +30,20 @@ export function getDaysInMonth(month: number, year: number): Date[] {
     return dates;
 }
 
+export function getValidDatesForTheRoutine(today: Date, offset: number): Date[] {
+    const dates: Date[] = [];
+    const firstDate = new Date(today);
+    const lastDate = new Date(today);
+    firstDate.setDate(today.getDate() - offset);
+    lastDate.setDate(today.getDate() + offset);
+
+    for (let date = firstDate; date <= lastDate; date.setDate(date.getDate() + 1)) {
+        dates.push(new Date(date));
+    }
+
+    return dates;
+}
+
 export function getCustomStyle(who: Who, isToday: boolean): CustomStyle {
     const color: string = who === Who.DAD 
         ? Colors.blue
