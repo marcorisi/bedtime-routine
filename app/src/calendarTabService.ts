@@ -6,6 +6,7 @@ export interface CustomStyle {
         backgroundColor: string;
         borderColor?: string;
         borderWidth?: number;
+        opacity: number;
     };
     text: {
         color: string;
@@ -33,7 +34,7 @@ export function getValidDatesForTheRoutine(today: Date, offset: number): Date[] 
     return dates;
 }
 
-export function getCustomStyle(who: Who, isToday: boolean): CustomStyle {
+export function getCustomStyle(who: Who, isToday: boolean, isInThePast: boolean): CustomStyle {
     const color: string = who === Who.DAD 
         ? Colors.blue
         : Colors.pink;
@@ -44,7 +45,8 @@ export function getCustomStyle(who: Who, isToday: boolean): CustomStyle {
 
     let customStyle: CustomStyle = {
         container: {
-            backgroundColor: backgroundColor
+            backgroundColor: backgroundColor,
+            opacity: isInThePast ? 1 : 0.4
         },
         text: {
             color: color,
