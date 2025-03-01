@@ -19,17 +19,6 @@ export interface MarkedDates {
     }
 }
 
-export function getDaysInMonth(month: number, year: number): Date[] {
-    const firstDayOfTheNextMonth = new Date(year, month + 1, 0).getDate();
-    const dates: Date[] = [];
-
-    for (let day = 1; day <= firstDayOfTheNextMonth; day++) {
-        dates.push(new Date(Date.UTC(year, month, day)));
-    }
-
-    return dates;
-}
-
 export function getValidDatesForTheRoutine(today: Date, offset: number): Date[] {
     const dates: Date[] = [];
     const firstDate = new Date(today);

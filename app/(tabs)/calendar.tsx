@@ -1,6 +1,6 @@
 import { View, StyleSheet } from "react-native";
 import { Calendar, LocaleConfig } from "react-native-calendars";
-import { MarkedDates, getCustomStyle, getDaysInMonth, getValidDatesForTheRoutine } from "../src/calendarTabService";
+import { MarkedDates, getCustomStyle, getValidDatesForTheRoutine } from "../src/calendarTabService";
 import { getWho } from "../src/turnService";
 import { appSettings } from "../src/config";
 
