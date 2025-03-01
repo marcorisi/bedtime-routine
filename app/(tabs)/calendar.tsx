@@ -1,7 +1,8 @@
 import { View, StyleSheet } from "react-native";
 import { Calendar, LocaleConfig } from "react-native-calendars";
-import { MarkedDates, getCustomStyle, getDaysInMonth } from "../src/calendarTabService";
+import { MarkedDates, getCustomStyle, getDaysInMonth, getValidDatesForTheRoutine } from "../src/calendarTabService";
 import { getWho } from "../src/turnService";
+import { appSettings } from "../src/config";
 
 export default function CalendarTab() {
 
@@ -27,9 +28,9 @@ export default function CalendarTab() {
   };
   LocaleConfig.defaultLocale = 'it';
 
-  const days: Date[] = getDaysInMonth(1, 2025);
-  const markedDates: MarkedDates = {};
   const today = new Date();
+  const days: Date[] = getValidDatesForTheRoutine(today, appSettings.numberOfDaysToConsider);
+  const markedDates: MarkedDates = {};
   
   days.forEach(day => {
     const who = getWho(day);
