@@ -1,5 +1,6 @@
 import { View, StyleSheet } from "react-native";
 import { Calendar, LocaleConfig } from "react-native-calendars";
+import { PastStats } from "../components/past-stats";
 import { MarkedDates, getCustomStyle, getValidDatesForTheRoutine } from "../src/calendarTabService";
 import { getWho } from "../src/turnService";
 import { appSettings } from "../src/config";
@@ -46,7 +47,8 @@ export default function CalendarTab() {
       <Calendar 
         markingType={'custom'} 
         markedDates={markedDates} 
-    />
+      />
+      <PastStats daysToConsider={appSettings.numberOfDaysToConsider} momsCount={3} dadsCount={3} />
     </View>
   );
 }
