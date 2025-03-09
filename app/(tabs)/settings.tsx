@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { View, Text, TextInput, Switch, StyleSheet, Button, Pressable } from "react-native";
+import { Colors } from "../src/colors";
 
 export default function Settings() {
   const [numberOfDaysToConsider, setNumberOfDaysToConsider] = useState("30");
@@ -47,7 +48,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     padding: 24,
-    backgroundColor: '#fff5f7',
+    backgroundColor: Colors.backgroundLightBlue,
   },
   formContainer: {
     justifyContent: 'center',
@@ -76,7 +77,7 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
   },
   button: {
-    backgroundColor: '#ed64a6',
+    backgroundColor: Colors.backgroundBlue,
     padding: 16,
     borderRadius: 8,
     alignItems: 'center',
