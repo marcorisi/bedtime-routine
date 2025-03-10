@@ -1,16 +1,36 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { View, Text, TextInput, Switch, StyleSheet, Button, Pressable } from "react-native";
 import { Colors } from "../src/colors";
+import StorageService from "../src/storage";
 
 export default function Settings() {
   const [numberOfDaysToConsider, setNumberOfDaysToConsider] = useState("30");
   const [consecutiveDays, setConsecutiveDays] = useState("1");
   const [isReversed, setIsReversed] = useState(false);
+  const storageService = StorageService.getInstance();
+
+  const init = () => {
+    storageService.getConfig().then((appSettings) => {
+      setNumberOfDaysToConsider(appSettings.numberOfDaysToConsider.toString());
+      setConsecutiveDays(appSettings.consecutiveDays.toString());
+      setIsReversed(appSettings.isReversed);
+    });
+  };
 
   const handleSave = () => {
     // Add your save logic here
+    const appSettings = {
+      numberOfDaysToConsider: parseInt(numberOfDaysToConsider),
+      consecutiveDays: parseInt(consecutiveDays),
+      isReversed: isReversed,
+    };
+    storageService.saveConfig(appSettings);
     console.log("Settings saved");
   };
+
+  useEffect(() => {
+    init();
+  }, []);
 
   return (
     <View style={styles.container}>

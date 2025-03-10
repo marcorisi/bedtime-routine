@@ -4,6 +4,8 @@ interface FeatureFlags {
 
 interface AppSettings {
     numberOfDaysToConsider: number;
+    consecutiveDays: number;
+    isReversed: boolean;
 }
 
 const featureFlags: FeatureFlags = {
@@ -12,7 +14,9 @@ const featureFlags: FeatureFlags = {
 };
 
 const appSettings: AppSettings = {
-    numberOfDaysToConsider: 30
+    numberOfDaysToConsider: 30,
+    consecutiveDays: 1,
+    isReversed: false,
 }
 
-export { featureFlags, appSettings };
+export { featureFlags, appSettings};
