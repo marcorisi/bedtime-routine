@@ -3,6 +3,7 @@ import { Calendar, LocaleConfig } from "react-native-calendars";
 import { MarkedDates, getCustomStyle, getValidDatesForTheRoutine } from "../src/calendarTabService";
 import { getWho } from "../src/turnService";
 import { appSettings } from "../src/config";
+import AppSkinService from "../src/AppSkinService";
 
 export default function CalendarTab() {
 
@@ -43,7 +44,7 @@ export default function CalendarTab() {
 
   return (
     <View style={styles.container}>
-      <Calendar 
+      <Calendar style={styles.calendar}
         markingType={'custom'} 
         markedDates={markedDates} 
       />
@@ -51,10 +52,15 @@ export default function CalendarTab() {
   );
 }
 
+const skin = AppSkinService.getInstance().getSkin();
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#fff",
-    justifyContent: "center",
+    backgroundColor: skin.backgroundLightColor,
+    padding: 24,
   },
+  calendar: {
+    borderRadius: 8,
+    boxShadow: '0 0 8px rgba(0, 0, 0, 0.1)',
+  }
 })

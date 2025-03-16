@@ -76,7 +76,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     backgroundColor: 'white',
     padding: 24,
-    borderRadius: 16,
+    borderRadius: 8,
     boxShadow: '0 0 8px rgba(0, 0, 0, 0.1)',
   },
   label: {
