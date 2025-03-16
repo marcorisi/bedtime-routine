@@ -1,11 +1,19 @@
 import { View, StyleSheet } from "react-native";
 import { Calendar, LocaleConfig } from "react-native-calendars";
 import { MarkedDates, getCustomStyle, getValidDatesForTheRoutine } from "../src/calendarTabService";
+import { useState } from "react";
 import { getWho } from "../src/turnService";
 import { appSettings } from "../src/config";
 import AppSkinService from "../src/AppSkinService";
+import StorageService from "../src/storage";
 
 export default function CalendarTab() {
+
+  const [numberOfDaysToConsider, setNumberOfDaysToConsider] = useState(appSettings.numberOfDaysToConsider);
+
+  StorageService.getInstance().getConfig().then((appSettings) => {
+    setNumberOfDaysToConsider(appSettings.numberOfDaysToConsider);
+  });
 
   LocaleConfig.locales['it'] = {
     monthNames: [
@@ -30,7 +38,7 @@ export default function CalendarTab() {
   LocaleConfig.defaultLocale = 'it';
 
   const today = new Date();
-  const days: Date[] = getValidDatesForTheRoutine(today, appSettings.numberOfDaysToConsider);
+  const days: Date[] = getValidDatesForTheRoutine(today, numberOfDaysToConsider);
   const markedDates: MarkedDates = {};
   
   days.forEach(day => {
