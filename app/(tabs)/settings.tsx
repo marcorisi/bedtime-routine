@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { View, Text, TextInput, Switch, StyleSheet, Button, Pressable } from "react-native";
-import { Colors } from "../src/colors";
 import StorageService from "../src/storage";
+import AppSkinService from "../src/AppSkinService";
 
 export default function Settings() {
   const [numberOfDaysToConsider, setNumberOfDaysToConsider] = useState("30");
@@ -64,11 +64,13 @@ export default function Settings() {
   );
 }
 
+const skin = AppSkinService.getInstance().getSkin();
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
     padding: 24,
-    backgroundColor: Colors.backgroundLightBlue,
+    backgroundColor: skin.backgroundLightColor,
   },
   formContainer: {
     justifyContent: 'center',
@@ -97,7 +99,7 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
   },
   button: {
-    backgroundColor: Colors.backgroundBlue,
+    backgroundColor: skin.primaryTextColor,
     padding: 16,
     borderRadius: 8,
     alignItems: 'center',
