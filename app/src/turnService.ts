@@ -6,9 +6,12 @@ function getNumberOfDaysFromStartOfYear(date: Date): number {
   return Math.floor(diff / (1000 * 60 * 60 * 24));
 }
 
-function getWho(date: Date): Who {
+function getWho(date: Date, isReversed: boolean = false): Who {
   const days = getNumberOfDaysFromStartOfYear(date);
-  const who = days % 2 === 0 ? Who.MOM : Who.DAD;
+  let who = days % 2 === 0 ? Who.MOM : Who.DAD;
+  if (isReversed) {
+    who = who === Who.MOM ? Who.DAD : Who.MOM;
+  }
   return who;
 }
 

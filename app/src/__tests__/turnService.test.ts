@@ -52,3 +52,29 @@ describe('getWho', () => {
         expect(result).toBe("papà");
     });
 });
+
+describe('getWho - reversed', () => {
+  it('should return mom for January 1st', () => {
+      const date = new Date('2023-01-01');
+      const result = getWho(date, true);
+      expect(result).toBe("papà");
+  });
+  
+  it('should return dad for January 2nd', () => {
+      const date = new Date('2023-01-02');
+      const result = getWho(date, true);
+      expect(result).toBe('mamma');
+  });
+  
+  it('should return mom for January 3rd', () => {
+      const date = new Date('2023-01-03');
+      const result = getWho(date, true);
+      expect(result).toBe("papà");
+  });
+
+  it('should return dad for January 4th', () => {
+      const date = new Date('2023-01-04');
+      const result = getWho(date, true);
+      expect(result).toBe("mamma");
+  });
+});
