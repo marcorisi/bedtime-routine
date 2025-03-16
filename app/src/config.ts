@@ -19,4 +19,4 @@ const appSettings: AppSettings = {
     isReversed: false,
 }
 
-export { featureFlags, appSettings};
+export { featureFlags, appSettings, AppSettings};
