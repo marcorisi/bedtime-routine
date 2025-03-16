@@ -9,8 +9,8 @@ interface AppSettings {
 }
 
 const featureFlags: FeatureFlags = {
-    tabCalendar: false,
-    tabSettings: false,
+    tabCalendar: true,
+    tabSettings: true,
 };
 
 const appSettings: AppSettings = {
