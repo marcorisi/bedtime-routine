@@ -34,7 +34,7 @@ export function getValidDatesForTheRoutine(today: Date, offset: number): Date[] 
     return dates;
 }
 
-export function getCustomStyle(who: Who, isToday: boolean, isInThePast: boolean): CustomStyle {
+export function getCustomStyle(who: Who, isToday: boolean, isInTheFuture: boolean): CustomStyle {
     const color: string = who === Who.DAD 
         ? Colors.blue
         : Colors.pink;
@@ -46,7 +46,7 @@ export function getCustomStyle(who: Who, isToday: boolean, isInThePast: boolean)
     let customStyle: CustomStyle = {
         container: {
             backgroundColor: backgroundColor,
-            opacity: isInThePast ? 1 : 0.4
+            opacity: isInTheFuture ? 0.4 : 1
         },
         text: {
             color: color,

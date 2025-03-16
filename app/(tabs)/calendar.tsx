@@ -44,9 +44,9 @@ export default function CalendarTab() {
   days.forEach(day => {
     const who = getWho(day);
     const isToday = day.toDateString() === today.toDateString();
-    const isInThePast = day < today;
+    const isInTheFuture = day > today;
     markedDates[day.toISOString().slice(0, 10)] = {
-      customStyles: getCustomStyle(who, isToday, isInThePast)
+      customStyles: getCustomStyle(who, isToday, isInTheFuture)
     }
   });
 
