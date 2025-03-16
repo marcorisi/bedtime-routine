@@ -6,8 +6,10 @@ function getNumberOfDaysFromStartOfYear(date: Date): number {
   return Math.floor(diff / (1000 * 60 * 60 * 24));
 }
 
-export function getWho(date: Date): Who {
+function getWho(date: Date): Who {
   const days = getNumberOfDaysFromStartOfYear(date);
   const who = days % 2 === 0 ? Who.MOM : Who.DAD;
   return who;
 }
+
+export { getNumberOfDaysFromStartOfYear, getWho };
