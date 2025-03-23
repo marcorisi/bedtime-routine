@@ -3,6 +3,8 @@ import { View, Text, TextInput, StyleSheet, Pressable } from "react-native";
 import StorageService from "../src/storage";
 import AppSkinService from "../src/AppSkinService";
 import { Colors } from "../src/colors";
+import { Who } from "../src/domain";
+import { getWho } from "../src/turnService";
 
 const getStyles = (skin: any) => {
   return StyleSheet.create({
@@ -55,6 +57,9 @@ const getStyles = (skin: any) => {
       borderWidth: 1,
       width: '50%',
     },
+    activeButtonSwitchTurn: {
+      backgroundColor: skin.backgroundColor,
+    },
     buttonLeftSwitchTurn: {
       borderTopLeftRadius: 8,
       borderBottomLeftRadius: 8,
@@ -70,18 +75,34 @@ const getStyles = (skin: any) => {
 }
 
 export default function Settings() {
+  const appSkinService = AppSkinService.getInstance();
+
   const [numberOfDaysToConsider, setNumberOfDaysToConsider] = useState("30");
   const [consecutiveDays, setConsecutiveDays] = useState("1");
   const [isReversed, setIsReversed] = useState(false);
+  const [isMomTurn, setIsMomTurn] = useState(true);
   const storageService = StorageService.getInstance();
-  const styles = getStyles(AppSkinService.getInstance().getSkin());
+  const styles = getStyles(appSkinService.getSkin());
 
   const init = () => {
     storageService.getConfig().then((appSettings) => {
       setNumberOfDaysToConsider(appSettings.numberOfDaysToConsider.toString());
       setConsecutiveDays(appSettings.consecutiveDays.toString());
       setIsReversed(appSettings.isReversed);
+
+      if (appSkinService.getWho() === Who.MOM) {
+        setIsMomTurn(true);
+      } else {
+        setIsMomTurn(false);
+      }
     });
+  };
+
+  const updateTodaysTurn = (who: Who) => {
+    const todaysTurn = getWho(new Date());
+    setIsMomTurn(who === Who.MOM);
+    setIsReversed(todaysTurn !== who);
+    appSkinService.setWho(who);
   };
 
   const handleSave = () => {
@@ -118,10 +139,10 @@ export default function Settings() {
         />
         <Text style={styles.label}>Oggi tocca a...</Text>
         <View style={styles.switchContainer}>
-          <Pressable style={[styles.buttonSwitchTurn, styles.buttonLeftSwitchTurn]} onPress={() => setIsReversed(!isReversed)}>
+          <Pressable style={[ styles.buttonSwitchTurn, styles.buttonLeftSwitchTurn, isMomTurn ? styles.activeButtonSwitchTurn: '' ]} onPress={() => updateTodaysTurn(Who.MOM)}>
             <Text style={[styles.buttonText]}>Mamma</Text>
           </Pressable>
-          <Pressable style={[styles.buttonSwitchTurn, styles.buttonRightSwitchTurn]} onPress={() => setIsReversed(!isReversed)}>
+          <Pressable style={[ styles.buttonSwitchTurn, styles.buttonRightSwitchTurn, !isMomTurn ? styles.activeButtonSwitchTurn: '']} onPress={() => updateTodaysTurn(Who.DAD)}>
             <Text style={[styles.buttonText]}>Papà</Text>
           </Pressable>
         </View>

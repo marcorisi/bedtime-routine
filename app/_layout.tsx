@@ -3,6 +3,7 @@ import { useEffect } from 'react';
 import * as SplashScreen from 'expo-splash-screen';
 import { Stack } from "expo-router";
 import AppSkinService from './src/AppSkinService';
+import StorageService from './src/storage';
 import { getWho } from './src/turnService';
 
 SplashScreen.preventAutoHideAsync();
@@ -21,8 +22,11 @@ export default function RootLayout() {
   }, [loaded, error]);
 
   useEffect(() => {
-    const appSkinService = AppSkinService.getInstance();
-    appSkinService.setWho(getWho(new Date()));
+    const storageService = StorageService.getInstance();
+    storageService.getConfig().then((appSettings) => {
+      const appSkinService = AppSkinService.getInstance();
+      appSkinService.setWho(getWho(new Date(), appSettings.isReversed));
+    });
   }, []);
 
   if (!loaded && !error) {

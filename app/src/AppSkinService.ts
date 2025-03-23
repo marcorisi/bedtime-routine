@@ -11,12 +11,18 @@ interface Skin {
 
 class AppSkinService {
   private static instance: AppSkinService;
-  private who: Who | undefined;
+  private who: Who;
 
-  private constructor() {}
+  private constructor() {
+    this.who = Who.MOM;
+  }
 
   public setWho(who: Who) {
     this.who = who;
+  }
+
+  public getWho(): Who {
+    return this.who;
   }
 
   public static getInstance(): AppSkinService {

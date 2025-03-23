@@ -20,8 +20,9 @@ const getStyles = (skin: any) => {
 
 export default function Index() {
   
-  const who: Who = getWho(new Date());
-  const styles = getStyles(AppSkinService.getInstance().getSkin());
+  const appSkinService = AppSkinService.getInstance();
+  const who = appSkinService.getWho();
+  const styles = getStyles(appSkinService.getSkin());
 
   return (
     <View style={styles.container}>
