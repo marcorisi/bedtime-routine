@@ -3,11 +3,60 @@ import { View, Text, TextInput, Switch, StyleSheet, Button, Pressable } from "re
 import StorageService from "../src/storage";
 import AppSkinService from "../src/AppSkinService";
 
+const getStyles = (skin: any) => {
+  return StyleSheet.create({
+    container: {
+      flex: 1,
+      padding: 24,
+      backgroundColor: skin.backgroundLightColor,
+    },
+    formContainer: {
+      justifyContent: 'center',
+      backgroundColor: 'white',
+      padding: 24,
+      borderRadius: 8,
+      boxShadow: '0 0 8px rgba(0, 0, 0, 0.1)',
+    },
+    label: {
+      fontFamily: 'Bangers_400Regular',
+      fontSize: 16,
+      marginBottom: 8,
+    },
+    input: {
+      fontFamily: 'Bangers_400Regular',
+      fontSize: 16,
+      height: 40,
+      borderColor: 'gray',
+      borderWidth: 1,
+      marginBottom: 24,
+      paddingHorizontal: 16,
+    },
+    switchContainer: {
+      flexDirection: 'row',
+      alignItems: 'center',
+      justifyContent: 'space-between',
+    },
+    button: {
+      backgroundColor: skin.primaryTextColor,
+      padding: 16,
+      borderRadius: 8,
+      alignItems: 'center',
+      marginTop: 24,
+    },
+    buttonText: {
+      fontFamily: 'Bangers_400Regular',
+      fontSize: 16,
+      color: 'white',
+    },
+  });
+}
+
 export default function Settings() {
   const [numberOfDaysToConsider, setNumberOfDaysToConsider] = useState("30");
   const [consecutiveDays, setConsecutiveDays] = useState("1");
   const [isReversed, setIsReversed] = useState(false);
   const storageService = StorageService.getInstance();
+  const styles = getStyles(AppSkinService.getInstance().getSkin());
 
   const init = () => {
     storageService.getConfig().then((appSettings) => {
@@ -63,51 +112,3 @@ export default function Settings() {
     </View>
   );
 }
-
-const skin = AppSkinService.getInstance().getSkin();
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    padding: 24,
-    backgroundColor: skin.backgroundLightColor,
-  },
-  formContainer: {
-    justifyContent: 'center',
-    backgroundColor: 'white',
-    padding: 24,
-    borderRadius: 8,
-    boxShadow: '0 0 8px rgba(0, 0, 0, 0.1)',
-  },
-  label: {
-    fontFamily: 'Bangers_400Regular',
-    fontSize: 16,
-    marginBottom: 8,
-  },
-  input: {
-    fontFamily: 'Bangers_400Regular',
-    fontSize: 16,
-    height: 40,
-    borderColor: 'gray',
-    borderWidth: 1,
-    marginBottom: 24,
-    paddingHorizontal: 16,
-  },
-  switchContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'space-between',
-  },
-  button: {
-    backgroundColor: skin.primaryTextColor,
-    padding: 16,
-    borderRadius: 8,
-    alignItems: 'center',
-    marginTop: 24,
-  },
-  buttonText: {
-    fontFamily: 'Bangers_400Regular',
-    fontSize: 16,
-    color: 'white',
-  },
-});

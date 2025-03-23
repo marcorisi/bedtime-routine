@@ -7,9 +7,24 @@ import { appSettings } from "../src/config";
 import AppSkinService from "../src/AppSkinService";
 import StorageService from "../src/storage";
 
+const getStyles = (skin: any) => {
+  return StyleSheet.create({
+    container: {
+      flex: 1,
+      backgroundColor: skin.backgroundLightColor,
+      padding: 24,
+    },
+    calendar: {
+      borderRadius: 8,
+      boxShadow: '0 0 8px rgba(0, 0, 0, 0.1)',
+    }
+  })
+}
+
 export default function CalendarTab() {
 
   const [numberOfDaysToConsider, setNumberOfDaysToConsider] = useState(appSettings.numberOfDaysToConsider);
+  const styles = getStyles(AppSkinService.getInstance().getSkin());
 
   StorageService.getInstance().getConfig().then((appSettings) => {
     setNumberOfDaysToConsider(appSettings.numberOfDaysToConsider);
@@ -59,16 +74,3 @@ export default function CalendarTab() {
     </View>
   );
 }
-
-const skin = AppSkinService.getInstance().getSkin();
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: skin.backgroundLightColor,
-    padding: 24,
-  },
-  calendar: {
-    borderRadius: 8,
-    boxShadow: '0 0 8px rgba(0, 0, 0, 0.1)',
-  }
-})
