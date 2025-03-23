@@ -1,7 +1,8 @@
 import { useState, useEffect } from "react";
-import { View, Text, TextInput, Switch, StyleSheet, Button, Pressable } from "react-native";
+import { View, Text, TextInput, StyleSheet, Pressable } from "react-native";
 import StorageService from "../src/storage";
 import AppSkinService from "../src/AppSkinService";
+import { Colors } from "../src/colors";
 
 const getStyles = (skin: any) => {
   return StyleSheet.create({
@@ -46,6 +47,23 @@ const getStyles = (skin: any) => {
     buttonText: {
       fontFamily: 'Bangers_400Regular',
       fontSize: 16,
+    },
+    buttonSwitchTurn: {
+      padding: 16,
+      alignItems: 'center',
+      borderColor: Colors.secondaryTextColor,
+      borderWidth: 1,
+      width: '50%',
+    },
+    buttonLeftSwitchTurn: {
+      borderTopLeftRadius: 8,
+      borderBottomLeftRadius: 8,
+    },
+    buttonRightSwitchTurn: {
+      borderTopRightRadius: 8,
+      borderBottomRightRadius: 8,
+    },
+    whiteColor: {
       color: 'white',
     },
   });
@@ -98,15 +116,17 @@ export default function Settings() {
           value={consecutiveDays}
           onChangeText={setConsecutiveDays}
         />
+        <Text style={styles.label}>Oggi tocca a...</Text>
         <View style={styles.switchContainer}>
-          <Text style={styles.label}>Inverti ordine genitori?</Text>
-          <Switch
-            value={isReversed}
-            onValueChange={setIsReversed}
-          />
+          <Pressable style={[styles.buttonSwitchTurn, styles.buttonLeftSwitchTurn]} onPress={() => setIsReversed(!isReversed)}>
+            <Text style={[styles.buttonText]}>Mamma</Text>
+          </Pressable>
+          <Pressable style={[styles.buttonSwitchTurn, styles.buttonRightSwitchTurn]} onPress={() => setIsReversed(!isReversed)}>
+            <Text style={[styles.buttonText]}>Papà</Text>
+          </Pressable>
         </View>
         <Pressable style={styles.button} onPress={handleSave}>
-          <Text style={styles.buttonText}>Salva</Text>
+          <Text style={[styles.buttonText, styles.whiteColor]}>Salva</Text>
         </Pressable>
       </View>
     </View>

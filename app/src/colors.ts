@@ -12,4 +12,5 @@ export const Colors = {
     backgroundLightPink: '#fff5f7',
 
     primaryTextColor: '#3C3C3C',
+    secondaryTextColor: '#A1A1A1',
 };
