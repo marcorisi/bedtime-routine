@@ -89,7 +89,7 @@ export default function Settings() {
   const appSkinService = AppSkinService.getInstance();
 
   const [numberOfDaysToConsider, setNumberOfDaysToConsider] = useState(30);
-  const [consecutiveDays, setConsecutiveDays] = useState("1");
+  const [consecutiveDays, setConsecutiveDays] = useState(1);
   const [isReversed, setIsReversed] = useState(false);
   const [isMomTurn, setIsMomTurn] = useState(true);
   const [message, setMessage] = useState("");
@@ -101,7 +101,7 @@ export default function Settings() {
       const daysValue = appSettings.numberOfDaysToConsider || 30;
       const validDays = Math.min(Math.max(daysValue, 30), 60);
       setNumberOfDaysToConsider(validDays);
-      setConsecutiveDays(appSettings.consecutiveDays.toString());
+      setConsecutiveDays(appSettings.consecutiveDays);
       setIsReversed(appSettings.isReversed);
 
       if (appSkinService.getWho() === Who.MOM) {
@@ -120,9 +120,19 @@ export default function Settings() {
   };
 
   const handleSave = () => {
+    let message = "";
     const daysValue = numberOfDaysToConsider;
+    const consecutiveDaysValue = consecutiveDays;
+    
     if (isNaN(daysValue) || daysValue < 30 || daysValue > 60) {
-      const message = "Il numero di giorni deve essere tra 30 e 60";
+      message += "I giorni di calendario devono essere compresi tra 30 e 60. ";
+    }
+
+    if (isNaN(consecutiveDaysValue) || consecutiveDaysValue < 1 || consecutiveDays > 5) {
+      message += "I giorni consecutivi devono essere compresi tra 1 e 5. ";
+    }
+
+    if (message) {
       setMessage(message);
       setTimeout(() => setMessage(""), 3000);
       return;
@@ -131,17 +141,25 @@ export default function Settings() {
     setMessage("");
     const appSettings = {
       numberOfDaysToConsider: daysValue,
-      consecutiveDays: parseInt(consecutiveDays),
+      consecutiveDays: consecutiveDays,
       isReversed: isReversed,
     };
     storageService.saveConfig(appSettings);
-    console.log("Settings saved");
+
+    message = "Impostazioni salvate!";
+    setMessage(message);
+    setTimeout(() => setMessage(""), 1000);
+    return;
   };
 
   const validateDaysInput = (text: string) => {
-    console.log("validateDaysInput", text);
     const value = text.replace(/[^0-9]/g, '');
     setNumberOfDaysToConsider(parseInt(value));
+  };
+
+  const validateConsecutiveDaysInput = (text: string) => {
+    const value = text.replace(/[^0-9]/g, '');
+    setConsecutiveDays(parseInt(value));
   };
 
   useEffect(() => {
@@ -164,12 +182,13 @@ export default function Settings() {
           onChangeText={validateDaysInput}
           maxLength={2}
         />
-        <Text style={styles.label}>Giorni consecutivi:</Text>
+        <Text style={styles.label}>Giorni consecutivi (1-5):</Text>
         <TextInput
           style={styles.input}
           keyboardType="numeric"
-          value={consecutiveDays}
-          onChangeText={setConsecutiveDays}
+          value={consecutiveDays.toString()}
+          maxLength={2}
+          onChangeText={validateConsecutiveDaysInput}
         />
         <Text style={styles.label}>Oggi tocca a...</Text>
         <View style={styles.switchContainer}>
