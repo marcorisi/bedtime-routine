@@ -5,6 +5,7 @@ import AppSkinService from "../src/AppSkinService";
 import { Colors } from "../src/colors";
 import { Who } from "../src/domain";
 import { getWho } from "../src/turnService";
+import { appSettings as defaultAppSettings, AppSettings } from "../src/config";
 
 const getStyles = (skin: any) => {
   return StyleSheet.create({
@@ -88,9 +89,10 @@ const getStyles = (skin: any) => {
 export default function Settings() {
   const appSkinService = AppSkinService.getInstance();
 
-  const [numberOfDaysToConsider, setNumberOfDaysToConsider] = useState(30);
-  const [consecutiveDays, setConsecutiveDays] = useState(1);
-  const [isReversed, setIsReversed] = useState(false);
+  const [appSettings, setAppSettings] = useState<AppSettings>(defaultAppSettings);
+  const [numberOfDaysToConsider, setNumberOfDaysToConsider] = useState(defaultAppSettings.numberOfDaysToConsider);
+  const [consecutiveDays, setConsecutiveDays] = useState(defaultAppSettings.consecutiveDays);
+  const [isReversed, setIsReversed] = useState(defaultAppSettings.isReversed);
   const [isMomTurn, setIsMomTurn] = useState(true);
   const [message, setMessage] = useState("");
   const storageService = StorageService.getInstance();
@@ -98,6 +100,7 @@ export default function Settings() {
 
   const init = () => {
     storageService.getConfig().then((appSettings) => {
+      setAppSettings(appSettings);
       const daysValue = appSettings.numberOfDaysToConsider || 30;
       const validDays = Math.min(Math.max(daysValue, 30), 60);
       setNumberOfDaysToConsider(validDays);
@@ -113,7 +116,7 @@ export default function Settings() {
   };
 
   const updateTodaysTurn = (who: Who) => {
-    const todaysTurn = getWho(new Date());
+    const todaysTurn = getWho(new Date(), appSettings.isReversed, appSettings.consecutiveDays);
     setIsMomTurn(who === Who.MOM);
     setIsReversed(todaysTurn !== who);
     appSkinService.setWho(who);
