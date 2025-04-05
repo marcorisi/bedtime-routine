@@ -71,22 +71,36 @@ const getStyles = (skin: any) => {
     whiteColor: {
       color: 'white',
     },
+    messageContainer: {
+      marginBottom: 16,
+      padding: 8,
+      backgroundColor: 'black',
+      borderRadius: 4,
+    },
+    messageText: {
+      color: 'white',
+      fontFamily: 'Bangers_400Regular',
+      fontSize: 14,
+    },
   });
 }
 
 export default function Settings() {
   const appSkinService = AppSkinService.getInstance();
 
-  const [numberOfDaysToConsider, setNumberOfDaysToConsider] = useState("30");
+  const [numberOfDaysToConsider, setNumberOfDaysToConsider] = useState(30);
   const [consecutiveDays, setConsecutiveDays] = useState("1");
   const [isReversed, setIsReversed] = useState(false);
   const [isMomTurn, setIsMomTurn] = useState(true);
+  const [message, setMessage] = useState("");
   const storageService = StorageService.getInstance();
   const styles = getStyles(appSkinService.getSkin());
 
   const init = () => {
     storageService.getConfig().then((appSettings) => {
-      setNumberOfDaysToConsider(appSettings.numberOfDaysToConsider.toString());
+      const daysValue = appSettings.numberOfDaysToConsider || 30;
+      const validDays = Math.min(Math.max(daysValue, 30), 60);
+      setNumberOfDaysToConsider(validDays);
       setConsecutiveDays(appSettings.consecutiveDays.toString());
       setIsReversed(appSettings.isReversed);
 
@@ -106,14 +120,28 @@ export default function Settings() {
   };
 
   const handleSave = () => {
-    // Add your save logic here
+    const daysValue = numberOfDaysToConsider;
+    if (isNaN(daysValue) || daysValue < 30 || daysValue > 60) {
+      const message = "Il numero di giorni deve essere tra 30 e 60";
+      setMessage(message);
+      setTimeout(() => setMessage(""), 3000);
+      return;
+    }
+
+    setMessage("");
     const appSettings = {
-      numberOfDaysToConsider: parseInt(numberOfDaysToConsider),
+      numberOfDaysToConsider: daysValue,
       consecutiveDays: parseInt(consecutiveDays),
       isReversed: isReversed,
     };
     storageService.saveConfig(appSettings);
     console.log("Settings saved");
+  };
+
+  const validateDaysInput = (text: string) => {
+    console.log("validateDaysInput", text);
+    const value = text.replace(/[^0-9]/g, '');
+    setNumberOfDaysToConsider(parseInt(value));
   };
 
   useEffect(() => {
@@ -123,12 +151,18 @@ export default function Settings() {
   return (
     <View style={styles.container}>
       <View style={styles.formContainer}>
-        <Text style={styles.label}>Giorni nel calendario:</Text>
+        {message ? (
+          <View style={styles.messageContainer}>
+            <Text style={styles.messageText}>{message}</Text>
+          </View>
+        ) : null}
+        <Text style={styles.label}>Giorni nel calendario (30-60):</Text>
         <TextInput
           style={styles.input}
           keyboardType="numeric"
-          value={numberOfDaysToConsider}
-          onChangeText={setNumberOfDaysToConsider}
+          value={numberOfDaysToConsider.toString()}
+          onChangeText={validateDaysInput}
+          maxLength={2}
         />
         <Text style={styles.label}>Giorni consecutivi:</Text>
         <TextInput
