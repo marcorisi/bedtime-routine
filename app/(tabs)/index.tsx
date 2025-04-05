@@ -1,7 +1,5 @@
 import { StyleSheet } from "react-native";
 import { View } from "react-native";
-import { getWho } from "../src/turnService";
-import { Who } from "../src/domain";
 import { MyAvatar } from "../components/my-avatar";
 import { MainTitle } from "../components/main-title";
 import AppSkinService from "../src/AppSkinService";
