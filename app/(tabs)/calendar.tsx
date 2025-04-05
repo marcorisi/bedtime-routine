@@ -70,6 +70,11 @@ export default function CalendarTab() {
       <Calendar style={styles.calendar}
         markingType={'custom'} 
         markedDates={markedDates} 
+        theme={{
+          textMonthFontFamily: 'Bangers_400Regular',
+          textDayHeaderFontFamily: 'Bangers_400Regular',
+          textDayHeaderFontSize: 16,
+        }}
       />
     </View>
   );
