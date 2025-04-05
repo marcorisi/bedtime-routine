@@ -24,10 +24,15 @@ const getStyles = (skin: any) => {
 export default function CalendarTab() {
 
   const [numberOfDaysToConsider, setNumberOfDaysToConsider] = useState(appSettings.numberOfDaysToConsider);
+  const [consecutiveDays, setConsecutiveDays] = useState(appSettings.consecutiveDays);
+  const [isReversed, setIsReversed] = useState(appSettings.isReversed);
   const styles = getStyles(AppSkinService.getInstance().getSkin());
 
   StorageService.getInstance().getConfig().then((appSettings) => {
+    console.log('appSettings', appSettings);
     setNumberOfDaysToConsider(appSettings.numberOfDaysToConsider);
+    setIsReversed(appSettings.isReversed);
+    setConsecutiveDays(appSettings.consecutiveDays);
   });
 
   LocaleConfig.locales['it'] = {
@@ -57,7 +62,7 @@ export default function CalendarTab() {
   const markedDates: MarkedDates = {};
   
   days.forEach(day => {
-    const who = getWho(day);
+    const who = getWho(day, isReversed, consecutiveDays);
     const isToday = day.toDateString() === today.toDateString();
     const isInTheFuture = day > today;
     markedDates[day.toISOString().slice(0, 10)] = {
