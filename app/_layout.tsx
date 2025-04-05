@@ -28,7 +28,7 @@ export default function RootLayout() {
     const storageService = StorageService.getInstance();
     storageService.getConfig().then((appSettings) => {
       const appSkinService = AppSkinService.getInstance();
-      const who = getWho(new Date(), appSettings.isReversed)
+      const who = getWho(new Date(), appSettings.isReversed, appSettings.consecutiveDays);
       appSkinService.setWho(who);
       setAppUser({ who: who });
     });
