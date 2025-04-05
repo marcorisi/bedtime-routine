@@ -6,9 +6,15 @@ function getNumberOfDaysFromStartOfYear(date: Date): number {
   return Math.floor(diff / (1000 * 60 * 60 * 24));
 }
 
-function getWho(date: Date, isReversed: boolean = false): Who {
-  const days = getNumberOfDaysFromStartOfYear(date);
-  let who = days % 2 === 0 ? Who.MOM : Who.DAD;
+function getWho(date: Date, isReversed: boolean = false, consecutiveDays: number = 1): Who {
+  let magicNumber = getNumberOfDaysFromStartOfYear(date);
+
+  if (consecutiveDays > 1) {
+    magicNumber /= consecutiveDays;
+    magicNumber = Math.floor(magicNumber);
+  }
+
+  let who = magicNumber % 2 === 0 ? Who.MOM : Who.DAD;
   if (isReversed) {
     who = who === Who.MOM ? Who.DAD : Who.MOM;
   }
