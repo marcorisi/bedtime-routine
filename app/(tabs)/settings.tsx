@@ -118,7 +118,7 @@ export default function Settings() {
   const updateTodaysTurn = (who: Who) => {
     const todaysTurn = getWho(new Date(), appSettings.isReversed, appSettings.consecutiveDays);
     setIsMomTurn(who === Who.MOM);
-    setIsReversed(todaysTurn !== who);
+    setIsReversed(appSettings.isReversed ? todaysTurn === who : todaysTurn !== who);
     appSkinService.setWho(who);
   };
 
