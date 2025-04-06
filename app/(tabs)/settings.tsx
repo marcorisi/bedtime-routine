@@ -155,7 +155,7 @@ export default function Settings() {
     return;
   };
 
-  const validateDaysInput = (text: string) => {
+  const validateCalendarDaysInput = (text: string) => {
     const value = text.replace(/[^0-9]/g, '');
     setNumberOfDaysToConsider(parseInt(value));
   };
@@ -182,7 +182,7 @@ export default function Settings() {
           style={styles.input}
           keyboardType="numeric"
           value={numberOfDaysToConsider.toString()}
-          onChangeText={validateDaysInput}
+          onChangeText={validateCalendarDaysInput}
           maxLength={2}
         />
         <Text style={styles.label}>Giorni consecutivi (1-5):</Text>
