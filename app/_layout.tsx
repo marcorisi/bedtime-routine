@@ -6,13 +6,14 @@ import AppSkinService from './src/AppSkinService';
 import StorageService from './src/storage';
 import { getWho } from './src/turnService';
 import { AppUserContext } from './src/AppContext';
+import type { AppUserContextType } from './src/AppContext';
 import { Who } from './src/domain';
 
 SplashScreen.preventAutoHideAsync();
 
 export default function RootLayout() {
 
-  const [appUser, setAppUser] = useState<{ who: Who }>({ who: Who.MOM });
+  const [appUser, setAppUser] = useState<AppUserContextType>({ who: Who.MOM });
 
   const [loaded, error] = useFonts({
     Bangers_400Regular
