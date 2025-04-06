@@ -29,7 +29,6 @@ export default function CalendarTab() {
   const styles = getStyles(AppSkinService.getInstance().getSkin());
 
   StorageService.getInstance().getConfig().then((appSettings) => {
-    console.log('appSettings', appSettings);
     setNumberOfDaysToConsider(appSettings.numberOfDaysToConsider);
     setIsReversed(appSettings.isReversed);
     setConsecutiveDays(appSettings.consecutiveDays);
