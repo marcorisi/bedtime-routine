@@ -5,16 +5,11 @@ import { Stack } from "expo-router";
 import AppSkinService from './src/AppSkinService';
 import StorageService from './src/storage';
 import { getWho } from './src/turnService';
-import { AppUserContext } from './src/AppContext';
-import type { AppUserContextType } from './src/AppContext';
 import { Who } from './src/domain';
 
 SplashScreen.preventAutoHideAsync();
 
 export default function RootLayout() {
-
-  const [appUser, setAppUser] = useState<AppUserContextType>({ who: Who.MOM });
-
   const [loaded, error] = useFonts({
     Bangers_400Regular
   });
@@ -31,7 +26,6 @@ export default function RootLayout() {
       const appSkinService = AppSkinService.getInstance();
       const who = getWho(new Date(), appSettings.isReversed, appSettings.consecutiveDays);
       appSkinService.setWho(who);
-      setAppUser({ who: who });
     });
   }, []);
 
@@ -40,11 +34,9 @@ export default function RootLayout() {
   }
 
   return (
-    <AppUserContext.Provider value={appUser}>
-      <Stack>
-        <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-      </Stack>
-    </AppUserContext.Provider>
+    <Stack>
+      <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+    </Stack>
   )
   
 }
