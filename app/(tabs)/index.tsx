@@ -6,8 +6,8 @@ import AppSkinService from "../src/AppSkinService";
 import { useCallback, useState } from "react";
 import { useFocusEffect } from "@react-navigation/native";
 
-
 const getStyles = (skin: any) => {
+  console.log('getStyles', skin)
   return StyleSheet.create({
     container: {
       flex: 1,
@@ -27,11 +27,11 @@ export default function Index() {
 
   useFocusEffect(
     useCallback(() => {
-      setStyles(getStyles(appSkin.getWho()))
+      setStyles(getStyles(appSkin.getSkin()));  // Fixed: use getSkin instead of getWho
       setWho(appSkin.getWho());
 
       return () => {};
-    }, [])
+    }, [])  // Empty dependency array means this only runs on mount and focus
   );
 
   return (
