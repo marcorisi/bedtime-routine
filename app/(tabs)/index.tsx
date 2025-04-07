@@ -7,7 +7,6 @@ import { useCallback, useState } from "react";
 import { useFocusEffect } from "@react-navigation/native";
 
 const getStyles = (skin: any) => {
-  console.log('getStyles', skin)
   return StyleSheet.create({
     container: {
       flex: 1,
