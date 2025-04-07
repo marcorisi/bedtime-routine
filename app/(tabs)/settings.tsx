@@ -115,11 +115,14 @@ export default function Settings() {
     });
   };
 
+  const getSelectedTurn = () => {
+    return isMomTurn ? Who.MOM : Who.DAD;
+  };
+
   const updateTodaysTurn = (who: Who) => {
     const todaysTurn = getWho(new Date(), appSettings.isReversed, appSettings.consecutiveDays);
     setIsMomTurn(who === Who.MOM);
     setIsReversed(appSettings.isReversed ? todaysTurn === who : todaysTurn !== who);
-    appSkinService.setWho(who);
   };
 
   const handleSave = () => {
@@ -148,6 +151,7 @@ export default function Settings() {
       isReversed: isReversed,
     };
     storageService.saveConfig(appSettings);
+    appSkinService.setWho(getSelectedTurn());
 
     message = "Impostazioni salvate!";
     setMessage(message);
