@@ -3,8 +3,8 @@ import { View } from "react-native";
 import { MyAvatar } from "../components/my-avatar";
 import { MainTitle } from "../components/main-title";
 import AppSkinService from "../src/AppSkinService";
-import { AppUserContext } from "../src/AppContext";
-import { useContext } from "react";
+import { useCallback, useState } from "react";
+import { useFocusEffect } from "@react-navigation/native";
 
 
 const getStyles = (skin: any) => {
@@ -20,10 +20,19 @@ const getStyles = (skin: any) => {
 
 export default function Index() {
 
-  const { who } = useContext(AppUserContext);
-  
-  const appSkinService = AppSkinService.getInstance();
-  const styles = getStyles(appSkinService.getSkin());
+  const appSkin = AppSkinService.getInstance();
+
+  const [styles, setStyles] = useState(getStyles(appSkin.getSkin()));
+  const [who, setWho] = useState(appSkin.getWho());
+
+  useFocusEffect(
+    useCallback(() => {
+      setStyles(getStyles(appSkin.getWho()))
+      setWho(appSkin.getWho());
+
+      return () => {};
+    }, [])
+  );
 
   return (
     <View style={styles.container}>
