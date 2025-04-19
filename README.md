@@ -45,7 +45,7 @@ This app leverages the following Open Source projects:
 * [React Native Nice Avatars](https://github.com/zamplyy/react-native-nice-avatar)
 * [Async Storage](https://github.com/react-native-async-storage/async-storage)
 
-The UI design was inspired by experimentation with [v0](https://v0.dev/).
+The UI design was inspired by experimentation with [v0](https://v0.dev/).  
 The logo and the splash screen have been created with [ChatGPT](https://chatgpt.com/).
 
 ## Contributing
