@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { View, Text, TextInput, StyleSheet, Pressable } from "react-native";
+import Constants from "expo-constants";
 import StorageService from "../src/storage";
 import AppSkinService from "../src/AppSkinService";
 import { Colors } from "../src/colors";
@@ -83,6 +84,15 @@ const getStyles = (skin: any) => {
       fontFamily: 'Bangers_400Regular',
       fontSize: 14,
     },
+    versionContainer: {
+      marginTop: 20,
+      alignItems: 'center',
+    },
+    versionText: {
+      fontFamily: 'Bangers_400Regular',
+      fontSize: 14,
+      color: 'gray',
+    },
   });
 }
 
@@ -97,6 +107,8 @@ export default function Settings() {
   const [message, setMessage] = useState("");
   const storageService = StorageService.getInstance();
   const styles = getStyles(appSkinService.getSkin());
+
+  const appVersion = Constants.expoConfig?.version || "1.0.0";
 
   const init = () => {
     storageService.getConfig().then((appSettings) => {
@@ -209,6 +221,10 @@ export default function Settings() {
         <Pressable style={styles.button} onPress={handleSave}>
           <Text style={[styles.buttonText, styles.whiteColor]}>Salva</Text>
         </Pressable>
+        
+        <View style={styles.versionContainer}>
+          <Text style={styles.versionText}>Versione app: {appVersion}</Text>
+        </View>
       </View>
     </View>
   );
