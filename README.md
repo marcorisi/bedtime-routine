@@ -4,6 +4,11 @@ A simple and colorful mobile application built with Expo to (hopefully!) help pa
 
 ## Screenshots
 
+<img src="./repository-assets/screenshot-1.png" width="270" />
+<img src="./repository-assets/screenshot-2.png" width="270" />
+<img src="./repository-assets/screenshot-3.png" width="270" />
+
+
 ## Installation
 
 1. Clone the repository:
