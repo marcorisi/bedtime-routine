@@ -37,6 +37,16 @@ eas build --profile <profile-name> --platform <ios|android>
 
 If you want to build locally, add the `--local` flag.
 
+## Third-Party Libraries and AI
+
+This app leverages the following Open Source projects:
+* [Expo and EAS](https://docs.expo.dev/)
+* [React Native Calendars](https://github.com/wix/react-native-calendars)
+* [React Native Nice Avatars](https://github.com/zamplyy/react-native-nice-avatar)
+* [Async Storage](https://github.com/react-native-async-storage/async-storage)
+
+The UI design was inspired by experimentation with [v0](https://v0.dev/).
+
 ## Contributing
 
 Contributions are welcome! Please feel free to submit a Pull Request.
