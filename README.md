@@ -46,6 +46,7 @@ This app leverages the following Open Source projects:
 * [Async Storage](https://github.com/react-native-async-storage/async-storage)
 
 The UI design was inspired by experimentation with [v0](https://v0.dev/).
+The logo and the splash screen have been created with [ChatGPT](https://chatgpt.com/).
 
 ## Contributing
 
