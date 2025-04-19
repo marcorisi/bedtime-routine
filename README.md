@@ -5,9 +5,9 @@ A simple and colorful mobile application built with Expo to (hopefully!) help pa
 ## Screenshots
 
 <p>
-   <img src="./repository-assets/screenshot-1.png" width="270" hspace="10" />
-   <img src="./repository-assets/screenshot-2.png" width="270" hspace="10" />
-   <img src="./repository-assets/screenshot-3.png" width="270" hspace="10" />
+   <img src="./repository-assets/screenshot-1.png" width="250" hspace="10" />
+   <img src="./repository-assets/screenshot-2.png" width="250" hspace="10" />
+   <img src="./repository-assets/screenshot-3.png" width="250" hspace="10" />
 </p>
 
 ## Installation
