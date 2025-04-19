@@ -5,7 +5,6 @@ import { Stack } from "expo-router";
 import AppSkinService from './src/AppSkinService';
 import StorageService from './src/storage';
 import { getWho } from './src/turnService';
-import { Who } from './src/domain';
 
 SplashScreen.preventAutoHideAsync();
 
