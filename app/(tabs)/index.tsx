@@ -2,7 +2,7 @@ import { StyleSheet } from "react-native";
 import { View } from "react-native";
 import { MyAvatar } from "../components/my-avatar";
 import { MainTitle } from "../components/main-title";
-import AppSkinService from "../src/AppSkinService";
+import AppSkinService from "@/src/AppSkinService";
 import { useCallback, useState } from "react";
 import { useFocusEffect } from "@react-navigation/native";
 

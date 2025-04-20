@@ -1,5 +1,5 @@
 import Avatar, { genConfig, AvatarFullConfig } from '@zamplyy/react-native-nice-avatar';
-import { Who } from "../src/domain";
+import { Who } from "@/src/domain";
 import React from 'react';
 
 export function MyAvatar({ who }: { who: Who }) {

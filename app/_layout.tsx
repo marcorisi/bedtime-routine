@@ -2,9 +2,9 @@ import { Bangers_400Regular, useFonts } from '@expo-google-fonts/bangers';
 import { useState, useEffect } from 'react';
 import * as SplashScreen from 'expo-splash-screen';
 import { Stack } from "expo-router";
-import AppSkinService from './src/AppSkinService';
-import StorageService from './src/storage';
-import { getWho } from './src/turnService';
+import AppSkinService from '@/src/AppSkinService';
+import StorageService from '@/src/storage';
+import { getWho } from '@/src/turnService';
 
 SplashScreen.preventAutoHideAsync();
 

@@ -1,11 +1,11 @@
 import FontAwesome from '@expo/vector-icons/FontAwesome';
 import { Tabs } from 'expo-router';
-import { featureFlags } from '../src/config';
-import AppSkinService from '../src/AppSkinService';
+import { featureFlags } from '@/src/config';
+import AppSkinService from '@/src/AppSkinService';
 import { useState } from 'react';
 
 export default function TabLayout() {
-  
+
   const appSkinService = AppSkinService.getInstance();
   const [color, setColor] = useState(appSkinService.getSkin().primaryTextColor);
 

@@ -1,12 +1,12 @@
 import { useState, useEffect } from "react";
 import { View, Text, TextInput, StyleSheet, Pressable } from "react-native";
 import Constants from "expo-constants";
-import StorageService from "../src/storage";
-import AppSkinService from "../src/AppSkinService";
-import { Colors } from "../src/colors";
-import { Who } from "../src/domain";
-import { getWho } from "../src/turnService";
-import { appSettings as defaultAppSettings, AppSettings } from "../src/config";
+import StorageService from "@/src/storage";
+import AppSkinService from "@/src/AppSkinService";
+import { Colors } from "@/src/colors";
+import { Who } from "@/src/domain";
+import { getWho } from "@/src/turnService";
+import { appSettings as defaultAppSettings, AppSettings } from "@/src/config";
 
 const getStyles = (skin: any) => {
   return StyleSheet.create({

@@ -1,11 +1,11 @@
 import { View, StyleSheet } from "react-native";
 import { Calendar, LocaleConfig } from "react-native-calendars";
-import { MarkedDates, getCustomStyle, getValidDatesForTheRoutine } from "../src/calendarTabService";
+import { MarkedDates, getCustomStyle, getValidDatesForTheRoutine } from "@/src/calendarTabService";
 import { useState } from "react";
-import { getWho } from "../src/turnService";
-import { appSettings } from "../src/config";
-import AppSkinService from "../src/AppSkinService";
-import StorageService from "../src/storage";
+import { getWho } from "@/src/turnService";
+import { appSettings } from "@/src/config";
+import AppSkinService from "@/src/AppSkinService";
+import StorageService from "@/src/storage";
 
 const getStyles = (skin: any) => {
   return StyleSheet.create({
