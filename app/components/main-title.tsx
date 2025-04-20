@@ -2,7 +2,7 @@ import { Text, StyleSheet } from "react-native";
 import { Who } from "@/src/domain";
 import { Colors } from "@/src/colors";
 
-export function MainTitle({ who }: { who: Who }) {
+export default function MainTitle({ who }: { who: Who }) {
     
     return (
         <>

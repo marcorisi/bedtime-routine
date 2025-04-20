@@ -2,7 +2,7 @@ import Avatar, { genConfig, AvatarFullConfig } from '@zamplyy/react-native-nice-
 import { Who } from "@/src/domain";
 import React from 'react';
 
-export function MyAvatar({ who }: { who: Who }) {
+export default function MyAvatar({ who }: { who: Who }) {
 
     const getAvatarConfig = (who: Who): AvatarFullConfig => {
         return (who === Who.MOM ?
